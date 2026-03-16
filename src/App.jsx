@@ -50,7 +50,7 @@ const countryConfig = {
   ES:  { name: "Spain",          flag: "🇪🇸", active: true,  currency: "EUR", lang: "Español" },
   PT:  { name: "Portugal",       flag: "🇵🇹", active: true,  currency: "EUR", lang: "Português" },
   UK:  { name: "United Kingdom", flag: "🇬🇧", active: true,  currency: "GBP", lang: "English" },
-  FR:  { name: "France",         flag: "🇫🇷", active: false, currency: "EUR", lang: "Français" },
+  FR:  { name: "France",         flag: "🇫🇷", active: true,  currency: "EUR", lang: "Français" },
   MC:  { name: "Monaco",         flag: "🇲🇨", active: false, currency: "EUR", lang: "Français" },
 };
 
@@ -338,7 +338,7 @@ const sampleData = {
   },
   NL: {
     employer: { name: "Sixt B.V.", address: "Kruisweg 791, 2132 NG Hoofddorp" },
-    employee: { name: "Mw. H. Bakrin (sample)", address: "Wim Van Eststraat 55, 2031 VE Haarlem", persNr: "0000572", globalId: "9000000005", indienst: "01.02.2023", functie: "Senior Executive" },
+    employee: { name: "Jan de Vries (sample)", address: "Voorbeeldstraat 1, 1011 AB Amsterdam", persNr: "0000001", globalId: "9000000005", indienst: "01.02.2023", functie: "Senior Executive" },
     payroll: { period: "februari 2026", date: "23.02.2026", currency: "EUR" },
     sections: [
       { title: "Betalingen", rows: [
@@ -426,7 +426,7 @@ const sampleData = {
   },
   PT: {
     employer: { name: "Sixt Research Development Services Lda", address: "Av. Infante Dom Henrique 143, 1950-406 Lisboa" },
-    employee: { name: "Ricardo Marvão (sample)", address: "Rua da Paz 1, 2680-039 Camarate", nEmpregado: "9000000006", admissao: "21.04.2025", categoria: "Agent Corporate Travel", jornada: "100%" },
+    employee: { name: "João Silva (sample)", address: "Rua da Paz 1, 2680-039 Lisboa", nEmpregado: "9000000006", admissao: "21.04.2025", categoria: "Agent Corporate Travel", jornada: "100%" },
     payroll: { period: "Fevereiro 2026", date: "26.02.2026", currency: "EUR" },
     sections: [
       { title: "Abonos", rows: [
@@ -446,6 +446,52 @@ const sampleData = {
     ],
     summary: { gross: "1.600,00 EUR", net: "1.376,00 EUR", paid: "1.376,00 EUR" },
     bank: "PT** **** **** **** **** ****",
+  },
+  FR: {
+    employer: { name: "Septentri Loc", address: "1 Pl. François Mitterrand, 59000 Lille" },
+    employee: { name: "Jean Dupont (sample)", address: "1 Rue Exemple, 59000 Lille", nSalarie: "XX000XXX", nSecSociale: "X XX XX XX XXX XXX XX", entree: "19.06.2017", emploi: "Agent d'Opérations Location Executive", centreCouts: "AGENCE NORD" },
+    payroll: { period: "Février 2026", date: "28.02.2026", currency: "EUR" },
+    sections: [
+      { title: "Éléments de salaire", rows: [
+        { code: "1101", label: "Salaire de base", monat: "2.244,00", tooltipKey: "salaireBase" },
+        { code: "3822", label: "Prime ICS", monat: "1.978,35", tooltipKey: "primeICS" },
+        { code: "3833", label: "Prime Dimanche", einheit: "7,45 h", ansatz: "7,40", monat: "55,11", tooltipKey: "primeDimanche" },
+        { code: "3834", label: "Prime Jour Férié", einheit: "5,67 h", ansatz: "7,40", monat: "41,94", tooltipKey: "primeJourFerie" },
+        { code: "3845", label: "Heures de nuit", einheit: "0,48 h", ansatz: "11,10", monat: "5,33", tooltipKey: "heuresNuit" },
+        { code: "/101", label: "Total Brut", monat: "4.324,73", bold: true, tooltipKey: "totalBrut" },
+      ]},
+      { title: "Santé", rows: [
+        { label: "Sécurité Sociale – Maladie/Mat./Décès", einheit: "4.324,73", ansatz: "–", monat: "–", tooltipKey: "securiteSociale" },
+        { label: "Complémentaire Incapacité Invalidité TA", einheit: "4.005,00", ansatz: "0,570%", monat: "-22,83", tooltipKey: "complementaireSante" },
+        { label: "Complémentaire Santé", einheit: "4.005,00", ansatz: "0,600%", monat: "-24,03", tooltipKey: "complementaireSante" },
+      ]},
+      { title: "Retraite", rows: [
+        { label: "Sécurité Sociale plafonnée", einheit: "4.005,00", ansatz: "6,900%", monat: "-276,35", tooltipKey: "retraite" },
+        { label: "Sécurité Sociale déplafonnée", einheit: "4.324,73", ansatz: "0,400%", monat: "-17,30", tooltipKey: "retraite" },
+        { label: "Complémentaire Tranche 1", einheit: "4.005,00", ansatz: "4,010%", monat: "-160,60", tooltipKey: "retraite" },
+        { label: "Complémentaire Tranche 2", einheit: "319,73", ansatz: "9,720%", monat: "-31,07", tooltipKey: "retraite" },
+        { label: "Contribution d'Équilibre Technique", einheit: "4.324,73", ansatz: "0,140%", monat: "-6,06", tooltipKey: "retraite" },
+      ]},
+      { title: "Assurance chômage", rows: [
+        { label: "Chômage (employeur)", einheit: "4.324,73", ansatz: "4,250%", monat: "–", tooltipKey: "chomage" },
+      ]},
+      { title: "CSG / CRDS", rows: [
+        { label: "CSG déductible de l'impôt sur le revenu", einheit: "4.355,25", ansatz: "6,800%", monat: "-296,16", tooltipKey: "csg" },
+        { label: "CSG/CRDS non déductible", einheit: "4.355,25", ansatz: "2,900%", monat: "-126,31", tooltipKey: "csg" },
+      ]},
+      { title: "Net & Impôt", rows: [
+        { label: "Net à payer avant impôt sur le revenu", monat: "3.221,20", bold: true, tooltipKey: "netAvantImpot" },
+        { label: "Impôt sur le revenu à la source (6,70%)", einheit: "3.518,03", ansatz: "6,70%", monat: "-235,71", tooltipKey: "pas" },
+        { label: "Ticket restaurant", einheit: "35 tickets", ansatz: "4,00€", monat: "-140,00", tooltipKey: "ticketResto" },
+        { label: "Net payé en euros", monat: "2.985,49", bold: true, tooltipKey: "netPaye" },
+      ]},
+      { title: "Informations employeur", rows: [
+        { label: "Allègement de cotisations employeur", monat: "216,78", tooltipKey: "allègement" },
+        { label: "Total versé par l'employeur", monat: "6.188,21", bold: true },
+      ]},
+    ],
+    summary: { gross: "4.324,73 EUR", net: "3.221,20 EUR", paid: "2.985,49 EUR" },
+    bank: "FR** **** **** **** **** **** ***",
   },
   UK: {
     employer: { name: "Sixt Rent A Car", address: "Great Britain" },
@@ -480,9 +526,28 @@ const sampleData = {
   },
 };
 
-const tooltipsByCountry = { DE: tooltipsDE, CH: tooltipsCH, IT: tooltipsIT, BE: tooltipsBE, LUX: tooltipsLUX, NL: tooltipsNL, ES: tooltipsES, AT: tooltipsAT, PT: tooltipsPT, UK: tooltipsUK };
-const localLangLabel = { DE: "Deutsch", CH: "Deutsch", IT: "Italiano", BE: "Nederlands", LUX: "Français", NL: "Nederlands", ES: "Español", AT: "Deutsch", PT: "Português", UK: "English" };
-const localLangKey = { DE: "de", CH: "de", IT: "it", BE: "nl", LUX: "fr", NL: "nl", ES: "es", AT: "de", PT: "pt", UK: "en2" };
+const tooltipsFR = {
+  salaireBase:   { en: "Base salary (Salaire de base): your fixed monthly gross salary as defined in your employment contract and collective agreement.", fr: "Salaire de base : votre salaire mensuel brut fixe tel que défini dans votre contrat de travail et la convention collective." },
+  primeICS:      { en: "ICS bonus (Prime ICS): a variable individual performance bonus based on commercial and operational targets.", fr: "Prime ICS : prime variable individuelle liée aux objectifs commerciaux et opérationnels." },
+  primeDimanche: { en: "Sunday premium (Prime Dimanche): additional pay for hours worked on Sundays, as required by French labour law and the applicable collective agreement.", fr: "Prime Dimanche : majoration pour les heures travaillées le dimanche, conformément au droit du travail français et à la convention collective applicable." },
+  primeJourFerie:{ en: "Public holiday premium (Prime Jour Férié): additional pay for hours worked on public holidays, above the standard hourly rate.", fr: "Prime Jour Férié : majoration pour les heures travaillées les jours fériés, au-delà du taux horaire normal." },
+  heuresNuit:    { en: "Night hours (Heures de nuit): additional pay for hours worked during the night period, as defined by the collective agreement.", fr: "Heures de nuit : majoration pour les heures effectuées pendant la plage horaire nocturne définie par la convention collective." },
+  totalBrut:     { en: "Total gross (Total Brut): the sum of all earnings components before any social security contributions or tax deductions.", fr: "Total Brut : la somme de tous les éléments de rémunération avant cotisations sociales et retenues fiscales." },
+  securiteSociale: { en: "French Social Security — illness/maternity/death (Sécurité Sociale Maladie): contributions funding health care, maternity leave, and death benefits. The employer pays a much larger share than the employee.", fr: "Sécurité Sociale Maladie/Maternité/Décès : cotisations finançant les soins de santé, le congé maternité et les prestations décès. L'employeur cotise bien plus que le salarié." },
+  complementaireSante: { en: "Supplementary health insurance (Complémentaire Santé): mandatory top-up health insurance that covers costs not reimbursed by the basic Social Security scheme.", fr: "Complémentaire Santé : mutuelle santé obligatoire couvrant les frais non remboursés par la Sécurité Sociale de base." },
+  retraite:      { en: "Pension contributions (Retraite): contributions to both the basic state pension (Sécurité Sociale plafonnée/déplafonnée) and the supplementary pension (AGIRC-ARRCO), split between employee and employer.", fr: "Retraite : cotisations à la retraite de base (SS plafonnée/déplafonnée) et à la retraite complémentaire (AGIRC-ARRCO), réparties entre salarié et employeur." },
+  chomage:       { en: "Unemployment insurance (Chômage): contribution to the French unemployment insurance fund (Unédic), paid entirely by the employer since 2018 for most employees.", fr: "Assurance chômage : cotisation au régime d'assurance chômage (Unédic), entièrement à la charge de l'employeur depuis 2018 pour la plupart des salariés." },
+  csg:           { en: "CSG (Generalised Social Contribution): a broad-based social levy on all income funding Social Security. The deductible portion reduces your taxable income; the non-deductible portion does not.", fr: "CSG (Contribution Sociale Généralisée) : prélèvement social large assis sur tous les revenus. La part déductible réduit votre revenu imposable ; la part non déductible ne le réduit pas." },
+  netAvantImpot: { en: "Net before income tax (Net à payer avant impôt sur le revenu): your net pay after all social contributions but before income tax withholding (PAS).", fr: "Net à payer avant impôt sur le revenu : votre salaire net après toutes les cotisations sociales, mais avant le prélèvement à la source (PAS)." },
+  pas:           { en: "Income tax withholding at source (Impôt sur le revenu prélevé à la source / PAS): French income tax deducted directly from your salary each month since the 2019 reform. The rate is personalised based on your household income.", fr: "Prélèvement à la source (PAS) : impôt sur le revenu déduit directement de votre salaire chaque mois depuis la réforme de 2019. Le taux est personnalisé selon les revenus de votre foyer fiscal." },
+  netPaye:       { en: "Net paid (Net payé en euros): the final amount transferred to your bank account after all deductions including income tax.", fr: "Net payé en euros : le montant final viré sur votre compte bancaire après toutes les retenues, y compris l'impôt sur le revenu." },
+  ticketResto:   { en: "Meal vouchers (Ticket restaurant): a deduction for your share of the meal voucher cost. The employer pays at least 50% — the balance is deducted from your net pay.", fr: "Ticket restaurant : retenue correspondant à votre part des tickets restaurant. L'employeur prend en charge au moins 50 % ; le solde est déduit de votre salaire net." },
+  allègement:    { en: "Employer contribution exemption (Allègement de cotisations employeur): a government subsidy reducing employer social security costs on low and medium wages, part of the Fillon reductions scheme.", fr: "Allègement de cotisations employeur : réduction gouvernementale des charges patronales sur les bas et moyens salaires, dans le cadre des réductions Fillon." },
+};
+
+const tooltipsByCountry = { DE: tooltipsDE, CH: tooltipsCH, IT: tooltipsIT, BE: tooltipsBE, LUX: tooltipsLUX, NL: tooltipsNL, ES: tooltipsES, AT: tooltipsAT, PT: tooltipsPT, UK: tooltipsUK, FR: tooltipsFR };
+const localLangLabel = { DE: "Deutsch", CH: "Deutsch", IT: "Italiano", BE: "Nederlands", LUX: "Français", NL: "Nederlands", ES: "Español", AT: "Deutsch", PT: "Português", UK: "English", FR: "Français" };
+const localLangKey = { DE: "de", CH: "de", IT: "it", BE: "nl", LUX: "fr", NL: "nl", ES: "es", AT: "de", PT: "pt", UK: "en2", FR: "fr" };
 
 // ─────────────────────────────────────────────────────────────
 // TOOLTIP COMPONENT
