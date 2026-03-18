@@ -493,6 +493,50 @@ const sampleData = {
     summary: { gross: "4.324,73 EUR", net: "3.221,20 EUR", paid: "2.985,49 EUR" },
     bank: "FR** **** **** **** **** **** ***",
   },
+  MC: {
+    employer: { name: "Sixt SARL", address: "Beach Plaza, 0022 Avenue Princesse Grace, 98000 Monaco" },
+    employee: { name: "Jean Martin (sample)", address: "1 Rue Exemple, 98000 Monaco", nSalarie: "XX0XXXXX", nCCSS: "XXXXXX-X", entree: "01.10.2018", emploi: "Agent Opération Location SR", horaire: "35,00h" },
+    payroll: { period: "Janvier 2026", date: "29.01.2026", currency: "EUR" },
+    sections: [
+      { title: "Éléments de salaire", rows: [
+        { label: "Salaire de base", einheit: "151,67 h", monat: "2.040,00", tooltipKey: "salaireBase" },
+        { label: "Prime ICS", monat: "2.183,42", tooltipKey: "primeICS" },
+        { label: "Heures supplémentaires à 125%", einheit: "3,52 h", ansatz: "16,813", monat: "59,18", tooltipKey: "heresSuppl" },
+        { label: "Prime Local Sales Q4", monat: "20,00" },
+        { label: "Majoration heures dimanche", einheit: "8,54 h", ansatz: "6,725", monat: "57,43", tooltipKey: "dimanche" },
+        { label: "Majoration heures jours fériés trav.", einheit: "7,53 h", ansatz: "13,450", monat: "101,28", tooltipKey: "feriesTrav" },
+        { label: "Absence jour férié", einheit: "7,00 h", ansatz: "13,450", monat: "94,15", tooltipKey: "absJourFerie" },
+        { label: "Indemnité jour férié", einheit: "7,00 h", ansatz: "13,450", monat: "94,15" },
+        { label: "Rémunération brute", monat: "4.461,31", bold: true, tooltipKey: "remunerationBrute" },
+      ]},
+      { title: "Cotisations salariales — Caisses Sociales Monaco", rows: [
+        { label: "CSS & OMT T2 (13,40%)", einheit: "4.461,31", monat: "-597,82", tooltipKey: "css" },
+        { label: "CGCS T2 (0,05%)", einheit: "4.461,31", monat: "-2,23" },
+        { label: "CAR de base T1 (6,85%)", einheit: "5.556,98", monat: "-380,65", tooltipKey: "car" },
+        { label: "CAR variable T1 (0,88%)", einheit: "5.556,98", monat: "-48,90", tooltipKey: "car" },
+        { label: "Prévoyance Emploi RAC TA (2,40%)", einheit: "4.005,00", monat: "-96,12", tooltipKey: "emploiRAC" },
+        { label: "Prévoyance Emploi RAC TB (2,40%)", einheit: "456,31", monat: "-10,95", tooltipKey: "emploiRAC" },
+        { label: "CMRC TA (3,15%)", einheit: "3.971,00", monat: "-125,09", tooltipKey: "cmrc" },
+        { label: "CMRC TB (8,64%)", einheit: "490,31", monat: "-42,36", tooltipKey: "cmrc" },
+        { label: "CMRC non droits TA (0,86%)", einheit: "3.971,00", monat: "-34,15", tooltipKey: "cmrc" },
+        { label: "CMRC non droits TB (1,08%)", einheit: "490,31", monat: "-5,30", tooltipKey: "cmrc" },
+        { label: "Total cotisations salariales", monat: "-694,62", bold: true },
+      ]},
+      { title: "Autres retenues", rows: [
+        { label: "Retenue titre repas (16 × 4,00€)", monat: "-64,00", tooltipKey: "titreRepas" },
+      ]},
+      { title: "Net & Paiement", rows: [
+        { label: "Net à payer", monat: "3.702,69", bold: true, tooltipKey: "netAPayer" },
+        { label: "Revenu imposable", monat: "3.766,69", tooltipKey: "revenuImposable" },
+      ]},
+      { title: "Cotisations patronales (informatives)", rows: [
+        { label: "Total cotisations patronales", monat: "1.615,50", bold: true },
+      ]},
+    ],
+    summary: { gross: "4.461,31 EUR", net: "3.702,69 EUR", paid: "3.702,69 EUR" },
+    bank: "FR** **** **** **** **** **** ***",
+    note: "Monaco has no personal income tax. No withholding tax (PAS) is deducted. French cross-border workers may have separate French tax obligations.",
+  },
   UK: {
     employer: { name: "Sixt Rent A Car", address: "Great Britain" },
     employee: { name: "J. Smith (sample)", address: "Sample Street 1, Birmingham B1 1AA", empNr: "08000001", globalId: "9000000007", taxCode: "1257L/0", niCategory: "A", payMethod: "BACS" },
@@ -545,9 +589,26 @@ const tooltipsFR = {
   allègement:    { en: "Employer contribution exemption (Allègement de cotisations employeur): a government subsidy reducing employer social security costs on low and medium wages, part of the Fillon reductions scheme.", fr: "Allègement de cotisations employeur : réduction gouvernementale des charges patronales sur les bas et moyens salaires, dans le cadre des réductions Fillon." },
 };
 
-const tooltipsByCountry = { DE: tooltipsDE, CH: tooltipsCH, IT: tooltipsIT, BE: tooltipsBE, LUX: tooltipsLUX, NL: tooltipsNL, ES: tooltipsES, AT: tooltipsAT, PT: tooltipsPT, UK: tooltipsUK, FR: tooltipsFR };
-const localLangLabel = { DE: "Deutsch", CH: "Deutsch", IT: "Italiano", BE: "Nederlands", LUX: "Français", NL: "Nederlands", ES: "Español", AT: "Deutsch", PT: "Português", UK: "English", FR: "Français" };
-const localLangKey = { DE: "de", CH: "de", IT: "it", BE: "nl", LUX: "fr", NL: "nl", ES: "es", AT: "de", PT: "pt", UK: "en2", FR: "fr" };
+const tooltipsMC = {
+  salaireBase:    { en: "Base salary (Salaire de base): your fixed monthly gross salary based on your classification and collective agreement.", fr: "Salaire de base : votre salaire mensuel brut fixe selon votre classification et la convention collective." },
+  primeICS:       { en: "ICS bonus (Prime ICS): a variable individual performance bonus based on commercial and operational results.", fr: "Prime ICS : prime variable individuelle liée aux résultats commerciaux et opérationnels." },
+  heresSuppl:     { en: "Overtime at 125% (Heures supplémentaires à 125%): hours worked beyond the standard 35h/week, paid at 125% of the normal hourly rate as required by Monaco labour law.", fr: "Heures supplémentaires à 125% : heures effectuées au-delà des 35h hebdomadaires, majorées à 125% du taux horaire normal conformément au droit du travail monégasque." },
+  dimanche:       { en: "Sunday premium (Majoration heures dimanche): additional pay for hours worked on Sundays, as per the automotive services collective agreement.", fr: "Majoration heures dimanche : majoration pour les heures travaillées le dimanche, selon la convention collective des services de l'automobile." },
+  feriesTrav:     { en: "Public holiday premium (Majoration heures jours fériés travaillés): additional pay for hours worked on public holidays.", fr: "Majoration heures jours fériés travaillés : majoration pour les heures effectuées les jours fériés." },
+  absJourFerie:   { en: "Public holiday absence (Absence jour férié): compensation for a public holiday that falls on a normally worked day — you receive your normal pay without working.", fr: "Absence jour férié : indemnisation d'un jour férié tombant un jour normalement travaillé — vous percevez votre salaire normal sans travailler." },
+  remunerationBrute: { en: "Total gross (Rémunération brute): the sum of all salary components before any social contributions or deductions.", fr: "Rémunération brute : la somme de tous les éléments de salaire avant cotisations sociales et retenues." },
+  css:            { en: "CSS & OMT contributions (Caisses Sociales de Monaco): Monaco's social security system managed by the CCSS — covering health, maternity, work accidents, and family benefits. Rate: 13.4% employee share.", fr: "Cotisations CSS & OMT : système de sécurité sociale monégasque géré par la CCSS — couvrant santé, maternité, accidents du travail et prestations familiales. Taux salarié : 13,4%." },
+  car:            { en: "CAR pension (Caisse de Retraite de Monaco): Monaco's mandatory supplementary pension fund. Contributions are split between employee and employer across two tranches (T1 and variable).", fr: "Retraite CAR : caisse de retraite complémentaire obligatoire de Monaco. Les cotisations sont réparties entre salarié et employeur sur deux tranches." },
+  emploiRAC:      { en: "Employment fund RAC (Prévoyance Emploi RAC): contributions to Monaco's unemployment and employment protection fund, covering two salary tranches (TA and TB).", fr: "Prévoyance Emploi RAC : cotisations au fonds monégasque pour l'emploi, couvrant deux tranches de salaire (TA et TB)." },
+  cmrc:           { en: "CMRC (Caisse Monégasque de Retraite Complémentaire): Monaco's supplementary retirement and provident fund — split across salary tranches TA and TB, with separate rates for standard and non-entitled contributions.", fr: "CMRC (Caisse Monégasque de Retraite Complémentaire) : fonds de retraite complémentaire et de prévoyance monégasque — réparti sur les tranches TA et TB, avec des taux distincts selon les droits." },
+  titreRepas:     { en: "Meal voucher deduction (Retenue titre repas): your personal share of the meal voucher cost deducted from net pay. The employer contributes the other portion.", fr: "Retenue titre repas : votre part personnelle du coût des titres repas, déduite du salaire net. L'employeur prend en charge l'autre partie." },
+  netAPayer:      { en: "Net to pay (Net à payer): your final take-home amount. Note: Monaco residents pay no personal income tax — unlike France, there is no withholding tax deducted from your payslip.", fr: "Net à payer : votre montant net final. À noter : les résidents monégasques ne paient pas d'impôt sur le revenu — contrairement à la France, aucun prélèvement fiscal n'est déduit sur votre bulletin." },
+  revenuImposable: { en: "Taxable income (Revenu imposable): the gross amount used as the basis for French cross-border tax obligations, applicable only to employees who are French tax residents working in Monaco.", fr: "Revenu imposable : le montant brut servant de base aux obligations fiscales françaises transfrontalières, applicable uniquement aux salariés résidents fiscaux français travaillant à Monaco." },
+};
+
+const tooltipsByCountry = { DE: tooltipsDE, CH: tooltipsCH, IT: tooltipsIT, BE: tooltipsBE, LUX: tooltipsLUX, NL: tooltipsNL, ES: tooltipsES, AT: tooltipsAT, PT: tooltipsPT, UK: tooltipsUK, FR: tooltipsFR, MC: tooltipsMC };
+const localLangLabel = { DE: "Deutsch", CH: "Deutsch", IT: "Italiano", BE: "Nederlands", LUX: "Français", NL: "Nederlands", ES: "Español", AT: "Deutsch", PT: "Português", UK: "English", FR: "Français", MC: "Français" };
+const localLangKey = { DE: "de", CH: "de", IT: "it", BE: "nl", LUX: "fr", NL: "nl", ES: "es", AT: "de", PT: "pt", UK: "en2", FR: "fr", MC: "fr" };
 
 // ─────────────────────────────────────────────────────────────
 // TOOLTIP COMPONENT
