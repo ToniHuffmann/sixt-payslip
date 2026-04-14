@@ -216,7 +216,7 @@ const sampleData = {
         { code: "/559", label: "Überweisung", monat: "5.586,21", bold: true, tooltipKey: "ueberweisung" },
       ]},
     ],
-    summary: { gross: "10.131,62 EUR", net: "6.903,08 EUR", paid: "5.586,21 EUR" },
+    summary: { gross: "3.850,00 EUR", net: "2.680,00 EUR", paid: "2.420,00 EUR" },
     bank: "DE** **** **** **** **** **",
   },
   CH: {
@@ -244,7 +244,7 @@ const sampleData = {
         { label: "Ausbezahlter Lohn", monat: "4'563.40", bold: true, tooltipKey: "ausbezahlt" },
       ]},
     ],
-    summary: { gross: "5'282.15 CHF", net: "4'604.75 CHF", paid: "4'563.40 CHF" },
+    summary: { gross: "3'200.00 CHF", net: "2'750.00 CHF", paid: "2'680.00 CHF" },
     bank: "CH** **** **** **** **** *",
   },
   IT: {
@@ -274,7 +274,7 @@ const sampleData = {
         { label: "Netto a pagare", monat: "11.435,39", bold: true, tooltipKey: "netto" },
       ]},
     ],
-    summary: { gross: "4.147,39 EUR", net: "3.072,20 EUR", paid: "11.435,39 EUR" },
+    summary: { gross: "3.100,00 EUR", net: "2.390,00 EUR", paid: "2.390,00 EUR" },
     bank: "IT** **** **** **** **** **** ***",
     note: "Note: Net includes severance (TFR) and accrued holiday pay due to contract end.",
   },
@@ -301,7 +301,7 @@ const sampleData = {
         { label: "Groepsverzekering werkgever", monat: "33,34" },
       ]},
     ],
-    summary: { gross: "4.319,48 EUR", net: "3.049,45 EUR", paid: "3.049,45 EUR" },
+    summary: { gross: "3.450,00 EUR", net: "2.580,00 EUR", paid: "2.580,00 EUR" },
     bank: "BE** **** **** ****",
   },
   LUX: {
@@ -333,7 +333,7 @@ const sampleData = {
         { label: "Net to be paid", monat: "3,225.85", bold: true },
       ]},
     ],
-    summary: { gross: "5,167.50 EUR", net: "4,036.25 EUR", paid: "3,225.85 EUR" },
+    summary: { gross: "3.600,00 EUR", net: "2.720,00 EUR", paid: "2.580,00 EUR" },
     bank: "LU** **** **** **** ****",
   },
   NL: {
@@ -365,7 +365,7 @@ const sampleData = {
         { label: "Netto", monat: "4.803,64", bold: true, tooltipKey: "netto" },
       ]},
     ],
-    summary: { gross: "7.852,26 EUR", net: "4.803,64 EUR", paid: "4.803,64 EUR" },
+    summary: { gross: "3.750,00 EUR", net: "2.890,00 EUR", paid: "2.890,00 EUR" },
     bank: "NL** ABNA **** **** **",
   },
   ES: {
@@ -393,7 +393,7 @@ const sampleData = {
         { label: "Líquido a percibir", monat: "5.926,89", bold: true, tooltipKey: "liquidoPercibir" },
       ]},
     ],
-    summary: { gross: "8.782,73 EUR", net: "6.228,52 EUR", paid: "5.926,89 EUR" },
+    summary: { gross: "3.200,00 EUR", net: "2.460,00 EUR", paid: "2.460,00 EUR" },
     bank: "ES** **** **** **** **** ****",
   },
   AT: {
@@ -421,7 +421,7 @@ const sampleData = {
         { label: "SV Dienstgeber", monat: "1.091,72", tooltipKey: "dienstgeberAT" },
       ]},
     ],
-    summary: { gross: "5.084,45 EUR", net: "3.401,17 EUR", paid: "3.401,17 EUR" },
+    summary: { gross: "3.050,00 EUR", net: "2.310,00 EUR", paid: "2.310,00 EUR" },
     bank: "AT** **** **** **** ****",
   },
   PT: {
@@ -444,7 +444,7 @@ const sampleData = {
         { label: "Líquido para Receber", monat: "1.376,00", bold: true, tooltipKey: "liquido" },
       ]},
     ],
-    summary: { gross: "1.600,00 EUR", net: "1.376,00 EUR", paid: "1.376,00 EUR" },
+    summary: { gross: "3.000,00 EUR", net: "2.280,00 EUR", paid: "2.280,00 EUR" },
     bank: "PT** **** **** **** **** ****",
   },
   FR: {
@@ -490,7 +490,7 @@ const sampleData = {
         { label: "Total versé par l'employeur", monat: "6.188,21", bold: true },
       ]},
     ],
-    summary: { gross: "4.324,73 EUR", net: "3.221,20 EUR", paid: "2.985,49 EUR" },
+    summary: { gross: "3.400,00 EUR", net: "2.550,00 EUR", paid: "2.410,00 EUR" },
     bank: "FR** **** **** **** **** **** ***",
   },
   MC: {
@@ -533,7 +533,7 @@ const sampleData = {
         { label: "Total cotisations patronales", monat: "1.615,50", bold: true },
       ]},
     ],
-    summary: { gross: "4.461,31 EUR", net: "3.702,69 EUR", paid: "3.702,69 EUR" },
+    summary: { gross: "3.500,00 EUR", net: "2.620,00 EUR", paid: "2.620,00 EUR" },
     bank: "FR** **** **** **** **** **** ***",
     note: "Monaco has no personal income tax. No withholding tax (PAS) is deducted. French cross-border workers may have separate French tax obligations.",
   },
@@ -564,7 +564,7 @@ const sampleData = {
         { label: "PENS L&G ER (this month)", monat: "87.97", tooltipKey: "pension" },
       ]},
     ],
-    summary: { gross: "1,035.78 GBP", net: "1,038.38 GBP", paid: "1,038.38 GBP" },
+    summary: { gross: "3.300,00 GBP", net: "2.480,00 GBP", paid: "2.480,00 GBP" },
     bank: "GB** **** **** **** **** **",
     note: "* denotes backdated pay. Net Pay exceeds Total Payment due to a prior-period tax refund (negative deduction).",
   },
@@ -642,7 +642,7 @@ const helpBannerLocal = {
 function HelpBanner({ countryCode, theme }) {
   const local = helpBannerLocal[countryCode] || helpBannerLocal.DE;
   const isEN = countryCode === "UK";
-  const wdUrl = "https://wd3.myworkday.com/sixt/d/home.htmld";
+  const wdUrl = "https://wd103.myworkday.com/sixt/wdhelp/helpcenter/create";
   return (
     <div style={{ margin: "0 14px 18px", padding: "14px 18px", background: "rgba(255,95,0,0.06)", border: `1px solid ${theme.orange}`, borderRadius: 10 }}>
       <div style={{ fontSize: 12, color: theme.text, lineHeight: 1.7, marginBottom: isEN ? 0 : 10 }}>
