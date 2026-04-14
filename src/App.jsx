@@ -51,7 +51,7 @@ const countryConfig = {
   PT:  { name: "Portugal",       flag: "🇵🇹", active: true,  currency: "EUR", lang: "Português" },
   UK:  { name: "United Kingdom", flag: "🇬🇧", active: true,  currency: "GBP", lang: "English" },
   FR:  { name: "France",         flag: "🇫🇷", active: true,  currency: "EUR", lang: "Français" },
-  MC:  { name: "Monaco",         flag: "🇲🇨", active: false, currency: "EUR", lang: "Français" },
+  MC:  { name: "Monaco",         flag: "🇲🇨", active: true, currency: "EUR", lang: "Français" },
 };
 
 // ─────────────────────────────────────────────────────────────
