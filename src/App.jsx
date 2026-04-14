@@ -51,7 +51,7 @@ const countryConfig = {
   PT:  { name: "Portugal",       flag: "🇵🇹", active: true,  currency: "EUR", lang: "Português" },
   UK:  { name: "United Kingdom", flag: "🇬🇧", active: true,  currency: "GBP", lang: "English" },
   FR:  { name: "France",         flag: "🇫🇷", active: true,  currency: "EUR", lang: "Français" },
-  MC:  { name: "Monaco",         flag: "🇲🇨", active: true, currency: "EUR", lang: "Français" },
+  MC:  { name: "Monaco",         flag: "🇲🇨", active: false, currency: "EUR", lang: "Français" },
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -606,6 +606,65 @@ const tooltipsMC = {
   revenuImposable: { en: "Taxable income (Revenu imposable): the gross amount used as the basis for French cross-border tax obligations, applicable only to employees who are French tax residents working in Monaco.", fr: "Revenu imposable : le montant brut servant de base aux obligations fiscales françaises transfrontalières, applicable uniquement aux salariés résidents fiscaux français travaillant à Monaco." },
 };
 
+// ─────────────────────────────────────────────────────────────
+// SIXT LOGO SVG
+// ─────────────────────────────────────────────────────────────
+function SixtLogo({ height = 28 }) {
+  return (
+    <svg height={height} viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="80" height="32" rx="3" fill="#FF5F00"/>
+      <text x="8" y="23" fontFamily="Arial Black, Arial" fontWeight="900" fontSize="20" fill="white" letterSpacing="1">SIXT</text>
+    </svg>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// HELP BANNER — bilingual, shown at bottom of every payslip
+// ─────────────────────────────────────────────────────────────
+const helpBannerLocal = {
+  DE:  "Wurde Ihre Frage nicht beantwortet? Öffnen Sie gerne einen Workday-Case — unser Payroll-Team hilft Ihnen weiter.",
+  AT:  "Wurde Ihre Frage nicht beantwortet? Öffnen Sie gerne einen Workday-Case — unser Payroll-Team hilft Ihnen weiter.",
+  CH:  "Wurde Ihre Frage nicht beantwortet? Öffnen Sie gerne einen Workday-Case — unser Payroll-Team hilft Ihnen weiter.",
+  IT:  "La tua domanda non ha trovato risposta? Apri pure un caso Workday — il nostro team Payroll è a tua disposizione.",
+  BE:  "Werd uw vraag niet beantwoord? Aarzel niet om een Workday-case te openen — ons Payroll-team helpt u graag verder.",
+  LUX: "Votre question n'a pas trouvé de réponse ? N'hésitez pas à ouvrir un cas Workday — notre équipe Payroll est là pour vous aider.",
+  NL:  "Is uw vraag niet beantwoord? Open gerust een Workday-case — ons Payroll-team helpt u graag verder.",
+  ES:  "¿Su pregunta no ha sido respondida? No dude en abrir un caso en Workday — nuestro equipo de Payroll estará encantado de ayudarle.",
+  PT:  "A sua questão não foi respondida? Não hesite em abrir um caso no Workday — a nossa equipa de Payroll está aqui para ajudar.",
+  UK:  "If your question wasn't answered, please don't hesitate to open a Workday case — our Payroll team is happy to help.",
+  FR:  "Votre question n'a pas trouvé de réponse ? N'hésitez pas à ouvrir un cas Workday — notre équipe Payroll est là pour vous aider.",
+  MC:  "Votre question n'a pas trouvé de réponse ? N'hésitez pas à ouvrir un cas Workday — notre équipe Payroll est là pour vous aider.",
+};
+
+function HelpBanner({ countryCode, theme }) {
+  const localText = helpBannerLocal[countryCode] || helpBannerLocal.DE;
+  const isEN = countryCode === "UK";
+  return (
+    <div style={{ margin: "0 14px 18px", padding: "14px 18px", background: "rgba(255,95,0,0.06)", border: `1px solid ${theme.orange}`, borderRadius: 10 }}>
+      <div style={{ fontSize: 12, color: theme.text, lineHeight: 1.7, marginBottom: isEN ? 0 : 10 }}>
+        <span style={{ fontWeight: 500, color: theme.orange }}>Still have questions?</span> If your question was not answered, please don't hesitate to open a Workday case{" "}
+        <a href="https://wd3.myworkday.com/sixt/d/home.htmld" target="_blank" rel="noreferrer"
+          style={{ color: theme.orange, textDecoration: "underline", fontWeight: 500 }}>here</a>{" "}
+        — our Payroll team is happy to help.
+      </div>
+      {!isEN && (
+        <div style={{ fontSize: 12, color: theme.textSecond, lineHeight: 1.7, borderTop: `0.5px solid ${theme.border}`, paddingTop: 10 }}>
+          {localText.replace("hier", `<here>`).split("<here>").length > 1
+            ? <>{localText.split(/hier|ici|aquí|aqui|here/i)[0]}
+                <a href="https://wd3.myworkday.com/sixt/d/home.htmld" target="_blank" rel="noreferrer"
+                  style={{ color: theme.orange, textDecoration: "underline", fontWeight: 500 }}>
+                  {localText.match(/hier|ici|aquí|aqui/i)?.[0] || "here"}
+                </a>
+                {localText.split(/hier|ici|aquí|aqui/i)[1] || ""}
+              </>
+            : localText
+          }
+        </div>
+      )}
+    </div>
+  );
+}
+
 const tooltipsByCountry = { DE: tooltipsDE, CH: tooltipsCH, IT: tooltipsIT, BE: tooltipsBE, LUX: tooltipsLUX, NL: tooltipsNL, ES: tooltipsES, AT: tooltipsAT, PT: tooltipsPT, UK: tooltipsUK, FR: tooltipsFR, MC: tooltipsMC };
 const localLangLabel = { DE: "Deutsch", CH: "Deutsch", IT: "Italiano", BE: "Nederlands", LUX: "Français", NL: "Nederlands", ES: "Español", AT: "Deutsch", PT: "Português", UK: "English", FR: "Français", MC: "Français" };
 const localLangKey = { DE: "de", CH: "de", IT: "it", BE: "nl", LUX: "fr", NL: "nl", ES: "es", AT: "de", PT: "pt", UK: "en2", FR: "fr", MC: "fr" };
@@ -753,6 +812,8 @@ function GenericPayslip({ countryCode, T: theme }) {
 
       {data.note && <div style={{ margin: "0 14px 12px", padding: "8px 14px", background: "rgba(255,95,0,0.06)", border: `0.5px solid ${theme.orange}`, borderRadius: 8, fontSize: 11, color: theme.textSecond }}>{data.note}</div>}
 
+      <HelpBanner countryCode={countryCode} theme={theme} />
+
       {/* Footer */}
       <div style={{ margin: "0 14px 18px", padding: "9px 14px", border: `0.5px solid ${theme.border}`, borderRadius: 8, fontSize: 11, color: theme.textMuted, lineHeight: 1.7 }}>
         Sample payslip — all personal data is anonymised. Real employee figures are not stored here. Hover any <span style={{ fontStyle: "italic", border: `1px solid ${theme.border}`, borderRadius: "50%", padding: "0 3px", fontSize: 9, color: theme.orange }}>i</span> field for a bilingual explanation.
@@ -835,7 +896,7 @@ export default function App() {
     <div style={{ background: T.pageBg, minHeight: "100vh", padding: "20px 20px 52px" }}>
       {/* Top bar */}
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 22, flexWrap: "wrap" }}>
-        <div style={{ background: T.orange, color: "#fff", fontWeight: 500, fontSize: 16, letterSpacing: "0.08em", padding: "6px 12px", borderRadius: 5 }}>SIXT</div>
+        <SixtLogo />
         <span style={{ fontSize: 13, color: T.textMuted }}>Employee Portal</span>
         <span style={{ fontSize: 13, color: T.border }}>›</span>
         <span style={{ fontSize: 13, color: T.textMuted }}>Understand your payslip</span>
