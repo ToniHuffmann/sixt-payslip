@@ -51,7 +51,7 @@ const countryConfig = {
   PT:  { name: "Portugal",       flag: "🇵🇹", active: true,  currency: "EUR", lang: "Português" },
   UK:  { name: "United Kingdom", flag: "🇬🇧", active: true,  currency: "GBP", lang: "English" },
   FR:  { name: "France",         flag: "🇫🇷", active: true,  currency: "EUR", lang: "Français" },
-  MC:  { name: "Monaco",         flag: "🇲🇨", active: true, currency: "EUR", lang: "Français" },
+  MC:  { name: "Monaco",         flag: "🇲🇨", active: true,  currency: "EUR", lang: "Français" },
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -609,11 +609,14 @@ const tooltipsMC = {
 // ─────────────────────────────────────────────────────────────
 // SIXT LOGO SVG
 // ─────────────────────────────────────────────────────────────
-function SixtLogo({ height = 28 }) {
+function SixtLogo({ height = 32 }) {
   return (
-    <svg height={height} viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="80" height="32" rx="3" fill="#FF5F00"/>
-      <text x="8" y="23" fontFamily="Arial Black, Arial" fontWeight="900" fontSize="20" fill="white" letterSpacing="1">SIXT</text>
+    <svg height={height} viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="120" height="40" rx="2" fill="#FF5F00"/>
+      <path d="M14 10 C10 10 7 12 7 16 C7 20 10 21 14 22 C17 23 18 23.5 18 25.5 C18 27.5 16.5 28.5 14 28.5 C11 28.5 9 27 8.5 25 L6 26.5 C7 29.5 10 31 14 31 C18.5 31 21.5 28.5 21.5 25 C21.5 21 18.5 20 15 19 C12 18 10.5 17.5 10.5 15.5 C10.5 13.5 12 12.5 14 12.5 C16.5 12.5 18 13.5 18.5 15.5 L21 14 C19.5 11 17 10 14 10Z" fill="white"/>
+      <rect x="24" y="10.5" width="3" height="20" fill="white"/>
+      <path d="M30 10.5 L37 20.5 L30 30.5 L33.5 30.5 L39 22.5 L44.5 30.5 L48 30.5 L41 20.5 L48 10.5 L44.5 10.5 L39 18.5 L33.5 10.5 Z" fill="white"/>
+      <polygon points="50,10.5 50,13 56,13 56,30.5 59,30.5 59,13 65,13 65,10.5" fill="white"/>
     </svg>
   );
 }
@@ -622,43 +625,36 @@ function SixtLogo({ height = 28 }) {
 // HELP BANNER — bilingual, shown at bottom of every payslip
 // ─────────────────────────────────────────────────────────────
 const helpBannerLocal = {
-  DE:  "Wurde Ihre Frage nicht beantwortet? Öffnen Sie gerne einen Workday-Case — unser Payroll-Team hilft Ihnen weiter.",
-  AT:  "Wurde Ihre Frage nicht beantwortet? Öffnen Sie gerne einen Workday-Case — unser Payroll-Team hilft Ihnen weiter.",
-  CH:  "Wurde Ihre Frage nicht beantwortet? Öffnen Sie gerne einen Workday-Case — unser Payroll-Team hilft Ihnen weiter.",
-  IT:  "La tua domanda non ha trovato risposta? Apri pure un caso Workday — il nostro team Payroll è a tua disposizione.",
-  BE:  "Werd uw vraag niet beantwoord? Aarzel niet om een Workday-case te openen — ons Payroll-team helpt u graag verder.",
-  LUX: "Votre question n'a pas trouvé de réponse ? N'hésitez pas à ouvrir un cas Workday — notre équipe Payroll est là pour vous aider.",
-  NL:  "Is uw vraag niet beantwoord? Open gerust een Workday-case — ons Payroll-team helpt u graag verder.",
-  ES:  "¿Su pregunta no ha sido respondida? No dude en abrir un caso en Workday — nuestro equipo de Payroll estará encantado de ayudarle.",
-  PT:  "A sua questão não foi respondida? Não hesite em abrir um caso no Workday — a nossa equipa de Payroll está aqui para ajudar.",
-  UK:  "If your question wasn't answered, please don't hesitate to open a Workday case — our Payroll team is happy to help.",
-  FR:  "Votre question n'a pas trouvé de réponse ? N'hésitez pas à ouvrir un cas Workday — notre équipe Payroll est là pour vous aider.",
-  MC:  "Votre question n'a pas trouvé de réponse ? N'hésitez pas à ouvrir un cas Workday — notre équipe Payroll est là pour vous aider.",
+  DE:  { before: "Wurde Ihre Frage nicht beantwortet? Öffnen Sie gerne ", link: "hier", after: " einen Workday-Case — unser Payroll-Team hilft Ihnen weiter." },
+  AT:  { before: "Wurde Ihre Frage nicht beantwortet? Öffnen Sie gerne ", link: "hier", after: " einen Workday-Case — unser Payroll-Team hilft Ihnen weiter." },
+  CH:  { before: "Wurde Ihre Frage nicht beantwortet? Öffnen Sie gerne ", link: "hier", after: " einen Workday-Case — unser Payroll-Team hilft Ihnen weiter." },
+  IT:  { before: "La tua domanda non ha trovato risposta? Apri pure un caso Workday ", link: "qui", after: " — il nostro team Payroll è a tua disposizione." },
+  BE:  { before: "Werd uw vraag niet beantwoord? Aarzel niet om ", link: "hier", after: " een Workday-case te openen — ons Payroll-team helpt u graag verder." },
+  LUX: { before: "Votre question n'a pas trouvé de réponse ? N'hésitez pas à ouvrir un cas Workday ", link: "ici", after: " — notre équipe Payroll est là pour vous aider." },
+  NL:  { before: "Is uw vraag niet beantwoord? Open gerust ", link: "hier", after: " een Workday-case — ons Payroll-team helpt u graag verder." },
+  ES:  { before: "¿Su pregunta no ha sido respondida? No dude en abrir un caso en Workday ", link: "aquí", after: " — nuestro equipo de Payroll estará encantado de ayudarle." },
+  PT:  { before: "A sua questão não foi respondida? Não hesite em abrir um caso no Workday ", link: "aqui", after: " — a nossa equipa de Payroll está aqui para ajudar." },
+  UK:  { before: "", link: "", after: "" },
+  FR:  { before: "Votre question n'a pas trouvé de réponse ? N'hésitez pas à ouvrir un cas Workday ", link: "ici", after: " — notre équipe Payroll est là pour vous aider." },
+  MC:  { before: "Votre question n'a pas trouvé de réponse ? N'hésitez pas à ouvrir un cas Workday ", link: "ici", after: " — notre équipe Payroll est là pour vous aider." },
 };
 
 function HelpBanner({ countryCode, theme }) {
-  const localText = helpBannerLocal[countryCode] || helpBannerLocal.DE;
+  const local = helpBannerLocal[countryCode] || helpBannerLocal.DE;
   const isEN = countryCode === "UK";
+  const wdUrl = "https://wd3.myworkday.com/sixt/d/home.htmld";
   return (
     <div style={{ margin: "0 14px 18px", padding: "14px 18px", background: "rgba(255,95,0,0.06)", border: `1px solid ${theme.orange}`, borderRadius: 10 }}>
       <div style={{ fontSize: 12, color: theme.text, lineHeight: 1.7, marginBottom: isEN ? 0 : 10 }}>
         <span style={{ fontWeight: 500, color: theme.orange }}>Still have questions?</span> If your question was not answered, please don't hesitate to open a Workday case{" "}
-        <a href="https://wd3.myworkday.com/sixt/d/home.htmld" target="_blank" rel="noreferrer"
-          style={{ color: theme.orange, textDecoration: "underline", fontWeight: 500 }}>here</a>{" "}
+        <a href={wdUrl} target="_blank" rel="noreferrer" style={{ color: theme.orange, textDecoration: "underline", fontWeight: 500 }}>here</a>{" "}
         — our Payroll team is happy to help.
       </div>
       {!isEN && (
         <div style={{ fontSize: 12, color: theme.textSecond, lineHeight: 1.7, borderTop: `0.5px solid ${theme.border}`, paddingTop: 10 }}>
-          {localText.replace("hier", `<here>`).split("<here>").length > 1
-            ? <>{localText.split(/hier|ici|aquí|aqui|here/i)[0]}
-                <a href="https://wd3.myworkday.com/sixt/d/home.htmld" target="_blank" rel="noreferrer"
-                  style={{ color: theme.orange, textDecoration: "underline", fontWeight: 500 }}>
-                  {localText.match(/hier|ici|aquí|aqui/i)?.[0] || "here"}
-                </a>
-                {localText.split(/hier|ici|aquí|aqui/i)[1] || ""}
-              </>
-            : localText
-          }
+          {local.before}
+          <a href={wdUrl} target="_blank" rel="noreferrer" style={{ color: theme.orange, textDecoration: "underline", fontWeight: 500 }}>{local.link}</a>
+          {local.after}
         </div>
       )}
     </div>
