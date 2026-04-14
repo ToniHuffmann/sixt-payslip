@@ -51,7 +51,7 @@ const countryConfig = {
   PT:  { name: "Portugal",       flag: "🇵🇹", active: true,  currency: "EUR", lang: "Português" },
   UK:  { name: "United Kingdom", flag: "🇬🇧", active: true,  currency: "GBP", lang: "English" },
   FR:  { name: "France",         flag: "🇫🇷", active: true,  currency: "EUR", lang: "Français" },
-  MC:  { name: "Monaco",         flag: "🇲🇨", active: true, currency: "EUR", lang: "Français" },
+  MC:  { name: "Monaco",         flag: "🇲🇨", active: false, currency: "EUR", lang: "Français" },
 };
 
 // ─────────────────────────────────────────────────────────────
@@ -774,7 +774,7 @@ function CountrySelector({ onSelect, T: theme }) {
           <div style={{ fontSize: 13, color: theme.textMuted }}>Employee Portal</div>
         </div>
       </div>
-      <div style={{ marginBottom: 44, maxWidth: 560 }}>
+      <div style={{ marginBottom: 44, maxWidth: 560, textAlign: "center", margin: "0 auto 44px" }}>
         <div style={{ fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.1em", color: theme.orange, marginBottom: 12 }}>Payroll &amp; Compensation</div>
         <h1 style={{ fontSize: 34, fontWeight: 500, margin: "0 0 12px", color: theme.text, lineHeight: 1.2 }}>Understand your payslip</h1>
         <p style={{ fontSize: 15, color: theme.textMuted, margin: 0, lineHeight: 1.7 }}>Select your country to explore a sample payslip and learn what each field means — in English and your local language.</p>
