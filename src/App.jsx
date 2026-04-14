@@ -892,7 +892,6 @@ export default function App() {
     <div style={{ background: T.pageBg, minHeight: "100vh", padding: "20px 20px 52px" }}>
       {/* Top bar */}
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 22, flexWrap: "wrap" }}>
-        <SixtLogo />
         <span style={{ fontSize: 13, color: T.textMuted }}>Employee Portal</span>
         <span style={{ fontSize: 13, color: T.border }}>›</span>
         <span style={{ fontSize: 13, color: T.textMuted }}>Understand your payslip</span>
