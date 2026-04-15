@@ -184,7 +184,7 @@ const tooltipsUK = {
 // ─────────────────────────────────────────────────────────────
 const sampleData = {
   DE: {
-    employer: { name: "SXT Dienst. GmbH & Co. KG", address: "Grubenstraße 27, 18055 Rostock" },
+    employer: { name: "SIXT SE", address: "Zugspitzstrasse 1, 82049 Pullach" },
     employee: { name: "Max Mustermann", address: "Musterstraße 1, 18055 Rostock", workdayId: "9000000001", eintritt: "01.04.2022", kostenstelle: "RAC_719_HR P" },
     payroll: { period: "Februar 2026", date: "18.02.2026", currency: "EUR", steuerSVTage: "30/30" },
     tax: { stKlasse: "4 / 0,862 / 2,0", rvAN: "9,30%", avAN: "1,30%", krankenkasse: "Privat (Mobil KK)" },
