@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 // ═══════════════════════════════════════════════════════════════════
-// ANONYMISED DATA — real SIXT DE payslips, März 2026
+// ANONYMISED DATA — real SIXT payslips, März 2026
 // Personal data replaced: names, addresses, IBANs, tax IDs,
 // RV numbers, Workday IDs, birth dates → all fictional
 // Employer: "SIXT SE" per product requirement
@@ -37,8 +37,7 @@ const DATA = {
   },
 
   // ── MOBILITY: Grundgehalt + ÖPNV-Zuschuss §40(2)
-  // Source: doc 01001174, Seite 3 (März 2026)
-  // 3052 Kenn=G → in Gesamtbrutto only, NOT in Steuer-Brutto / SV-Brutto
+  // Source: doc 01001174, Seite 3 (März 2026), anonymised
   mobility: {
     meta: { name: "Anna Bergmann", workdayId: "W-00087432", kostenstelle: "RAC_719_HR_P", period: "März 2026", eintritt: "01.05.2022", stKlasse: "2", krankenkasse: "BKK firmus", kvRate: "8,390%", pvRate: "1,8000%", avRate: "1,30%", rvRate: "9,30%", svTage: "30 / 30" },
     entgelt: [
@@ -72,13 +71,13 @@ const DATA = {
   },
 
   // ── DIENSTRAD: Grundgehalt + Fahrrad Grundrate + gw. Vorteil
-  // Source: doc 01001113 (März 2026)
+  // Source: doc 01001113 (März 2026), anonymised
   dienstrad: {
     meta: { name: "Jonas Weber", workdayId: "W-00061345", kostenstelle: "RAC_001_HR_F", period: "März 2026", eintritt: "01.02.2022", stKlasse: "1", krankenkasse: "BKK firmus", kvRate: "8,390%", pvRate: "2,4000%", avRate: "1,30%", rvRate: "9,30%", svTage: "30 / 30" },
     entgelt: [
-      { code: "1101", label: "Grundgehalt",         kenn: "LSG", betrag: "3.640,00" },
-      { code: "8432", label: "Fahrrad 2 Grundrate", kenn: "LSG", betrag: "53,50",  minus: true, highlight: true },
-      { code: "3065", label: "Fahrrad 1 gw.Vorteil",kenn: "LSG", betrag: "7,00",              highlight: true },
+      { code: "1101", label: "Grundgehalt",          kenn: "LSG", betrag: "3.640,00" },
+      { code: "8432", label: "Fahrrad 2 Grundrate",  kenn: "LSG", betrag: "53,50",  minus: true, highlight: true },
+      { code: "3065", label: "Fahrrad 1 gw.Vorteil", kenn: "LSG", betrag: "7,00",              highlight: true },
     ],
     brutto: [
       { code: "/10E", label: "Gesamtbrutto (EBeschV)",   betrag: "3.593,50" },
@@ -105,33 +104,41 @@ const DATA = {
     ueberweisung: "2.386,84",
   },
 
-  // ── FIRMENWAGEN: from previously processed real payslip
+  // ── FIRMENWAGEN: real data from doc 01001112 (März 2026), anonymised
+  // Private KV replaced with GKV (TK) as representative for majority of employees
+  // Authentic fields: 1101, 8421, /425, /426, all brutto/abzug amounts
   firmenwagen: {
-    meta: { name: "Michael Bauer", workdayId: "W-00034891", kostenstelle: "RAC_MUC_001", period: "März 2026", eintritt: "15.03.2019", stKlasse: "1", krankenkasse: "TK", kvRate: "7,300%", pvRate: "1,7000%", avRate: "1,30%", rvRate: "9,30%", svTage: "30 / 30" },
+    meta: { name: "Max Mustermann", workdayId: "W-00039867", kostenstelle: "RAC_719_HR_P", period: "März 2026", eintritt: "01.04.2022", stKlasse: "4", krankenkasse: "TK", kvRate: "7,300%", pvRate: "1,7000%", avRate: "1,30%", rvRate: "9,30%", svTage: "30 / 30" },
     entgelt: [
-      { code: "1101",  label: "Grundgehalt",                 kenn: "LSG", betrag: "5.500,00" },
-      { code: "Y$33E", label: "PKW-Wert geldwerter Vorteil", kenn: "LSG", betrag: "550,00",  highlight: true },
-      { code: "Y$21E", label: "PKW-KM geldwerter Vorteil",   kenn: "LSG", betrag: "165,00",  highlight: true },
-      { code: "Y$10",  label: "Zuzahlung Dienstwagen",       kenn: "LSG", betrag: "150,00",  minus: true, highlight: true },
+      { code: "1101", label: "Grundgehalt",           kenn: "LSG", betrag: "9.416,67" },
+      { code: "8421", label: "Zuzahlung Dienstwagen", kenn: "LSG", betrag: "85,00",   minus: true, highlight: true },
+      { code: "/425", label: "PKW-Wert gw.Vorteil",   kenn: "LSG", betrag: "597,00",             highlight: true },
+      { code: "/426", label: "PKW-KM gw.Vorteil",     kenn: "LSG", betrag: "125,37",             highlight: true },
     ],
     brutto: [
-      { code: "/10E", label: "Gesamtbrutto (EBeschV)",   betrag: "6.065,00" },
-      { code: "Y$04", label: "Steuer-Brutto, lfd.",      betrag: "6.065,00" },
-      { code: "Y$05", label: "SV-Brutto KV, lfd.",       betrag: "6.065,00" },
-      { code: "Y$06", label: "SV-Brutto RV, lfd.",       betrag: "6.065,00" },
-      { code: "Y$51", label: "SV-Brutto AV, lfd.",       betrag: "6.065,00" },
-      { code: "Y$08", label: "SV-Brutto PV, lfd.",       betrag: "6.065,00" },
+      { code: "/10E", label: "Gesamtbrutto (EBeschV)",   betrag: "10.054,04" },
+      { code: "Y$04", label: "Steuer-Brutto, lfd.",      betrag: "10.054,04" },
+      { code: "P3BH", label: "Pausch.StB §37b AG",       betrag: "130,64",   dim: true },
+      { code: "Y$05", label: "SV-Brutto KV, lfd.",       betrag: "5.812,50" },
+      { code: "Y$06", label: "SV-Brutto RV, lfd.",       betrag: "8.450,00" },
+      { code: "Y$51", label: "SV-Brutto AV, lfd.",       betrag: "8.450,00" },
+      { code: "Y$08", label: "SV-Brutto PV, lfd.",       betrag: "5.812,50" },
     ],
     abzuege: [
-      { code: "Y$33", label: "Lohnsteuer, lfd.",           betrag: "1.480,00", minus: true },
-      { code: "Y$20", label: "Krankenversicherung, lfd.",  betrag: "441,54",   minus: true },
-      { code: "Y$21", label: "Rentenversicherung, lfd.",   betrag: "564,05",   minus: true },
-      { code: "Y$22", label: "Arbeitslosenvers., lfd.",    betrag: "78,85",    minus: true },
-      { code: "Y$23", label: "Pflegeversicherung, lfd.",   betrag: "103,11",   minus: true },
+      { code: "Y$33", label: "Lohnsteuer, lfd.",           betrag: "2.296,41", minus: true },
+      { code: "Y$31", label: "Solidaritätszuschlag, lfd.", betrag: "36,43",    minus: true },
+      { code: "Y$20", label: "Krankenversicherung, lfd.",  betrag: "424,31",   minus: true },
+      { code: "Y$21", label: "Rentenversicherung, lfd.",   betrag: "785,85",   minus: true },
+      { code: "Y$22", label: "Arbeitslosenvers., lfd.",    betrag: "109,85",   minus: true },
+      { code: "Y$23", label: "Pflegeversicherung, lfd.",   betrag: "98,81",    minus: true },
     ],
-    gesetzlNetto: "3.397,45",
-    sonstige: [],
-    ueberweisung: "3.397,45",
+    gesetzlNetto: "6.302,58",
+    sonstige: [
+      { code: "95A6", label: "Einm.Netto gw.Vortl §37b", betrag: "130,64", minus: true, dim: true },
+      { code: "/425", label: "PKW-Wert gw.Vorteil",       betrag: "597,00", minus: true, highlight: true },
+      { code: "/426", label: "PKW-KM gw.Vorteil",         betrag: "125,37", minus: true, highlight: true },
+    ],
+    ueberweisung: "5.449,57",
   },
 };
 
@@ -143,18 +150,19 @@ const TIPS = {
   "3052":  { en: "Public transport subsidy (ÖPNV-Zuschuss): SIXT contributes €20/month towards your transport costs. Taxed flat-rate by SIXT under §40(2) EStG — SIXT pays the tax, not you. Therefore NOT in your personal Steuer-Brutto or SV-Brutto. You receive the full €20 with no personal deduction. Kenn 'G' = Gesamtbrutto only.", de: "ÖPNV-Zuschuss: SIXT zahlt 20 €/Monat zu Ihren Fahrtkosten. Von SIXT pauschal nach §40(2) EStG versteuert — SIXT trägt die Steuer. Nicht im persönlichen Steuerbrutto oder SV-Brutto. Sie erhalten 20 € vollständig. Kennzeichen 'G' = nur Gesamtbrutto." },
   "8432":  { en: "Bike lease rate (Fahrrad Grundrate): the monthly leasing instalment deducted from your gross salary before tax via salary conversion (Gehaltsumwandlung). Reduces your taxable gross — you pay less income tax and social security than on a comparable cash salary.", de: "Fahrrad-Grundrate: monatliche Leasingrate, die per Gehaltsumwandlung vom Bruttogehalt vor Steuer abgezogen wird. Senkt Ihr Steuerbrutto — weniger Lohnsteuer und SV als bei vergleichbarem Barlohn." },
   "3065":  { en: "Company bike benefit in kind (geldwerter Vorteil Fahrrad): taxable value for private use of the leased bike — 0.25% of gross list price per month. Added to taxable gross for tax/SV purposes, then deducted again from net pay (see Sonstige). No cash flows to you.", de: "Geldwerter Vorteil Fahrrad: steuerpflichtiger Wert der Privatnutzung, 0,25% des Bruttolistenpreises/Monat. Dem Steuerbrutto zugeschlagen, im Netto wieder abgezogen (siehe Sonstige). Keine Barauszahlung." },
-  "Y$33E": { en: "Company car benefit in kind – value (PKW-Wert): taxable value of private car use, 1% of the car's list price per month. Increases your taxable gross — no cash payment.", de: "Geldwerter Vorteil PKW-Wert: steuerpflichtiger Wert der Privatnutzung, 1% des Listenpreises/Monat. Erhöht das Steuerbrutto — keine Barauszahlung." },
-  "Y$21E": { en: "Company car commute benefit (PKW-KM): taxable value for home-to-work trips with the company car. Calculated as 0.03% of list price × distance in km × working months.", de: "PKW-KM geldwerter Vorteil: steuerpflichtiger Wert für Fahrten Wohnung–Arbeit. Berechnung: 0,03% des Listenpreises × Entfernung km × Monate." },
-  "Y$10":  { en: "Personal contribution to company car (Zuzahlung Dienstwagen): your monthly payment towards the car, which reduces the taxable benefit in kind — lowering your income tax.", de: "Zuzahlung Dienstwagen: Ihr monatlicher Eigenanteil am Firmenwagen, der den geldwerten Vorteil mindert — und damit Ihre Lohnsteuer senkt." },
+  "8421":  { en: "Personal contribution to company car (Zuzahlung Dienstwagen): your monthly payment towards the car, which directly reduces the taxable benefit in kind — lowering your income tax liability.", de: "Zuzahlung Dienstwagen: Ihr monatlicher Eigenanteil am Firmenwagen. Mindert direkt den geldwerten Vorteil — und damit Ihre Lohnsteuer." },
+  "/425":  { en: "Company car benefit in kind – list price (PKW-Wert gw.Vorteil): taxable value of private car use, calculated as 1% of the car's gross list price per month. Increases your taxable gross — no cash payment to you. Deducted again from net pay in Sonstige.", de: "Geldwerter Vorteil PKW-Wert: steuerpflichtiger Wert der Privatnutzung, 1% des Bruttolistenpreises/Monat. Erhöht das Steuerbrutto — keine Barauszahlung. Wird in Sonstige wieder vom Netto abgezogen." },
+  "/426":  { en: "Company car commute benefit (PKW-KM gw.Vorteil): additional taxable value for home-to-work trips with the company car. Calculated as 0.03% of list price × distance in km × working months. Also deducted from net pay in Sonstige.", de: "PKW-KM geldwerter Vorteil: zusätzlicher Sachbezug für Fahrten Wohnung–Arbeit. Berechnung: 0,03% des Listenpreises × Entfernung km × Monate. Wird ebenfalls in Sonstige vom Netto abgezogen." },
   "/10E":  { en: "Total gross (Gesamtbrutto, EBeschV): sum of all earnings components including flat-rate taxed benefits like the ÖPNV subsidy. Used for employer certificates and year-end reporting.", de: "Gesamtbrutto (EBeschV): Summe aller Entgeltbestandteile einschließlich pauschal versteuerter Benefits wie dem ÖPNV-Zuschuss. Basis für Arbeitgeberbescheinigungen und Jahresmeldung." },
   "Y$04":  { en: "Taxable gross, ongoing (Steuer-Brutto, lfd.): the portion of your earnings subject to personal income tax each month. Flat-rate taxed items (e.g. ÖPNV subsidy) and one-off payments are excluded.", de: "Steuer-Brutto, laufend: der monatlich der persönlichen Lohnsteuer unterliegende Teil. Pauschal versteuerte Bestandteile (z. B. ÖPNV-Zuschuss) und Einmalzahlungen sind ausgenommen." },
   "P42H":  { en: "Flat-rate income tax §40(2) EStG, paid by employer: SIXT pays this tax on the ÖPNV subsidy on your behalf. Does not reduce your net pay.", de: "Pauschalsteuer §40(2) EStG, vom Arbeitgeber: SIXT zahlt diese Steuer auf den ÖPNV-Zuschuss für Sie. Kein Abzug von Ihrem Netto." },
   "P3BH":  { en: "Flat-rate income tax §37b EStG, paid by employer: covers non-cash benefits (e.g. gifts/vouchers) where SIXT bears the tax. No effect on your net pay.", de: "Pauschalsteuer §37b EStG, vom Arbeitgeber: Für Sachzuwendungen trägt SIXT die Steuer. Kein Einfluss auf Ihr Netto." },
-  "Y$05":  { en: "SV gross for health insurance (SV-Brutto KV): income base for your health insurance contribution. May differ from Steuer-Brutto when certain items are excluded.", de: "SV-Brutto KV: Bemessungsgrundlage für Krankenversicherungsbeiträge. Kann vom Steuerbrutto abweichen." },
-  "Y$06":  { en: "SV gross for pension insurance (SV-Brutto RV): income base for pension insurance contributions.", de: "SV-Brutto RV: Bemessungsgrundlage für Rentenversicherungsbeiträge." },
+  "Y$05":  { en: "SV gross for health insurance (SV-Brutto KV): income base for your health insurance contribution. Capped at the KV contribution ceiling (2026: €5,512.50/month).", de: "SV-Brutto KV: Bemessungsgrundlage für Krankenversicherungsbeiträge. Begrenzt auf die KV-Beitragsbemessungsgrenze (2026: 5.512,50 €/Monat)." },
+  "Y$06":  { en: "SV gross for pension insurance (SV-Brutto RV): income base for pension insurance contributions. Capped at the RV contribution ceiling (2026: €8,450/month in West Germany).", de: "SV-Brutto RV: Bemessungsgrundlage für Rentenversicherungsbeiträge. Begrenzt auf die RV-Beitragsbemessungsgrenze (2026: 8.450 €/Monat West)." },
   "Y$51":  { en: "SV gross for unemployment insurance (SV-Brutto AV): income base for unemployment insurance contributions.", de: "SV-Brutto AV: Bemessungsgrundlage für Arbeitslosenversicherungsbeiträge." },
-  "Y$08":  { en: "SV gross for long-term care insurance (SV-Brutto PV): income base for care insurance contributions.", de: "SV-Brutto PV: Bemessungsgrundlage für Pflegeversicherungsbeiträge." },
+  "Y$08":  { en: "SV gross for long-term care insurance (SV-Brutto PV): income base for care insurance contributions. Same ceiling as KV.", de: "SV-Brutto PV: Bemessungsgrundlage für Pflegeversicherungsbeiträge. Gleiche Grenze wie KV." },
   "Y$33":  { en: "Income tax, ongoing (Lohnsteuer, lfd.): withheld monthly from your taxable gross by SIXT and remitted to the tax office. Rate depends on your tax class and Steuer-Brutto.", de: "Lohnsteuer, laufend: monatlich von SIXT einbehalten und ans Finanzamt abgeführt. Satz abhängig von Steuerklasse und Steuerbrutto." },
+  "Y$31":  { en: "Solidarity surcharge (Solidaritätszuschlag): applies at higher income levels. Calculated as a percentage of income tax. Many employees are exempt — it appears here because of the high taxable gross including car benefits.", de: "Solidaritätszuschlag: fällt bei höheren Einkommen an. Berechnet als Prozentsatz der Lohnsteuer. Viele Arbeitnehmer sind befreit — erscheint hier aufgrund des hohen Steuerbruttos inkl. PKW-Sachbezug." },
   "Y$20":  { en: "Health insurance, employee share (Krankenversicherung, lfd.): calculated at your KV-AN rate on SV-Brutto KV, up to the contribution ceiling.", de: "Krankenversicherung, Arbeitnehmeranteil: KV-AN-Satz auf SV-Brutto KV bis zur Beitragsbemessungsgrenze." },
   "Y$21":  { en: "Pension insurance, employee share (Rentenversicherung, lfd.): currently 9.3% of SV-Brutto RV up to the contribution ceiling. Employer pays the same rate on top.", de: "Rentenversicherung, Arbeitnehmeranteil: aktuell 9,3% des SV-Brutto RV bis zur Beitragsbemessungsgrenze. Arbeitgeber trägt denselben Anteil zusätzlich." },
   "Y$22":  { en: "Unemployment insurance, employee share (Arbeitslosenversicherung, lfd.): currently 1.3% of SV-Brutto AV up to the contribution ceiling.", de: "Arbeitslosenversicherung, Arbeitnehmeranteil: aktuell 1,3% des SV-Brutto AV bis zur Beitragsbemessungsgrenze." },
@@ -274,14 +282,6 @@ function PayslipBody({ scenario }) {
   if (!d) return null;
   const { meta, entgelt, brutto, abzuege, gesetzlNetto, sonstige, ueberweisung, ueberweisungNormal } = d;
 
-  // tip key overrides for firmenwagen (code collision with abzug Y$33/Y$21)
-  function entgeltTipKey(r) {
-    if (scenario === "firmenwagen") {
-      if (r.code === "Y$33E") return "Y$33E";
-      if (r.code === "Y$21E") return "Y$21E";
-    }
-    return r.code;
-  }
   function sonstiTipKey(r) {
     if (r.code === "3065") return "3065s";
     return r.code;
@@ -313,24 +313,19 @@ function PayslipBody({ scenario }) {
 
       <div style={{ padding: "4px 10px 0" }}>
 
-        {/* Entgeltbestandteile */}
-        {entgelt.map((r, i) => <Row key={i} {...r} tipKey={entgeltTipKey(r)} />)}
+        {entgelt.map((r, i) => <Row key={i} {...r} />)}
 
-        {/* Bruttoentgelte */}
         <div style={{ height: 1, background: "#ddd", margin: "4px 0" }} />
         <SBar>Bruttoentgelte</SBar>
         {brutto.map((r, i) => <Row key={i} {...r} />)}
 
-        {/* Gesetzliche Abzüge */}
         <div style={{ height: 1, background: "#ddd", margin: "4px 0" }} />
         <SBar>Gesetzliche Abzüge</SBar>
         {abzuege.map((r, i) => <Row key={i} {...r} />)}
 
-        {/* Gesetzl. Netto */}
         <div style={{ height: 1, background: "#ddd", margin: "4px 0" }} />
         <SubtotalRow label="/55E  Gesetzl. Netto (EBeschV)" value={gesetzlNetto} />
 
-        {/* Sonstige */}
         {sonstige.length > 0 && (
           <>
             <SBar>Sonstige Be-/Abzüge</SBar>
@@ -343,7 +338,6 @@ function PayslipBody({ scenario }) {
           </>
         )}
 
-        {/* Überweisungen */}
         <div style={{ height: 1, background: "#ddd", margin: "4px 0" }} />
       </div>
 
