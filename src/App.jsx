@@ -123,8 +123,6 @@ const DE_DATA = {
     brutto: [
       { code: "/10E", label: "Gesamtbrutto (EBeschV)",   betrag: "3.593,50" },
       { code: "Y$04", label: "Steuer-Brutto, lfd.",      betrag: "3.593,50" },
-      { code: "P3BH", label: "Pausch.StB §37b AG",       betrag: "22,58",   dim: true },
-      { code: "P42H", label: "Pausch.StB §40(2) AG",     betrag: "20,00",   dim: true },
       { code: "Y$05", label: "SV-Brutto KV, lfd.",       betrag: "3.593,50" },
       { code: "Y$06", label: "SV-Brutto RV, lfd.",       betrag: "3.593,50" },
       { code: "Y$51", label: "SV-Brutto AV, lfd.",       betrag: "3.593,50" },
